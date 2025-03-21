@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional tattoo services with a gallery of our best work. Book an appointment online.">
+    <meta name="keywords" content="tattoo, body art, ink, professional tattoo, tattoo booking">
+    <meta name="author" content="Your Tattoo Studio">
+    <title>Your Tattoo Studio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let index = 0;
+            const images = document.querySelectorAll(".carousel img");
+            function showImage(i) {
+                images.forEach(img => img.style.display = "none");
+                images[i].style.display = "block";
+            }
+            function nextImage() {
+                index = (index + 1) % images.length;
+                showImage(index);
+            }
+            function prevImage() {
+                index = (index - 1 + images.length) % images.length;
+                showImage(index);
+            }
+            document.querySelector(".next").addEventListener("click", nextImage);
+            document.querySelector(".prev").addEventListener("click", prevImage);
+            showImage(index);
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Red Palm Tattoo</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="gallery">
+            <h2>Our Artwork</h2>
+            <div class="carousel">
+                <button class="prev">&#10094;</button>
+                <img src="images/1.jpg" alt="Tattoo design 1">
+                <img src="images/2.jpg" alt="Tattoo design 2" style="display:none;">
+                <img src="images/3.jpg" alt="Tattoo design 3" style="display:none;">
+                <button class="next">&#10095;</button>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Your Tattoo Studio. All rights reserved.</p>
+    </footer>
+</body>
+</html>
