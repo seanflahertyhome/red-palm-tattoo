@@ -5,28 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Professional tattoo services with a gallery of our best work. Book an appointment online.">
     <meta name="keywords" content="tattoo, body art, ink, professional tattoo, tattoo booking">
-    <meta name="author" content="Your Tattoo Studio">
-    <title>Your Tattoo Studio</title>
+    <meta name="author" content="Red Palm Tattoo">
+    <title>Red Palm Tattoo</title>
     <link rel="stylesheet" href="styles.css">
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            let index = 0;
-            const images = document.querySelectorAll(".carousel img");
-            function showImage(i) {
-                images.forEach(img => img.style.display = "none");
-                images[i].style.display = "block";
+            let slideIndex = 0;
+            const slideshowContainer = document.querySelector(".slideshow-container");
+            const maxPic = 3;
+            
+            for (let i = 1; i <= maxPic; i++) { // Assuming a max of 10 images
+                let div = document.createElement("div");
+                div.className = "slide fade";
+                let img = document.createElement("img");
+                img.src = `images/${i}.jpg`;
+                img.style.width = "100%";
+                img.alt = `Tattoo design ${i}`;
+                div.appendChild(img);
+                slideshowContainer.appendChild(div);
             }
-            function nextImage() {
-                index = (index + 1) % images.length;
-                showImage(index);
+
+            function showSlides() {
+                const changeMilliseconds = 5000 // Change image every 5 seconds
+                let slides = document.getElementsByClassName("slide");
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) { slideIndex = 1; }
+                slides[slideIndex - 1].style.display = "block";
+                setTimeout(showSlides, changeMilliseconds); 
             }
-            function prevImage() {
-                index = (index - 1 + images.length) % images.length;
-                showImage(index);
-            }
-            document.querySelector(".next").addEventListener("click", nextImage);
-            document.querySelector(".prev").addEventListener("click", prevImage);
-            showImage(index);
+            showSlides();
         });
     </script>
 </head>
@@ -35,8 +45,8 @@
         <h1>Red Palm Tattoo</h1>
         <nav>
             <ul>
-                <li><a href="index.html">Gallery</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.html"><b>Gallery</b></a></li>
+                <li><a href="contact.html"><b>Contact</b></a></li>
             </ul>
         </nav>
     </header>
@@ -44,18 +54,12 @@
     <main>
         <section id="gallery">
             <h2>Our Artwork</h2>
-            <div class="carousel">
-                <button class="prev">&#10094;</button>
-                <img src="images/1.jpg" alt="Tattoo design 1">
-                <img src="images/2.jpg" alt="Tattoo design 2" style="display:none;">
-                <img src="images/3.jpg" alt="Tattoo design 3" style="display:none;">
-                <button class="next">&#10095;</button>
-            </div>
+            <div class="slideshow-container"></div>
         </section>
     </main>
     
     <footer>
-        <p>&copy; 2025 Your Tattoo Studio. All rights reserved.</p>
+        <p>&copy; 2025 Red Palm Tattoo. All rights reserved.</p>
     </footer>
 </body>
 </html>
